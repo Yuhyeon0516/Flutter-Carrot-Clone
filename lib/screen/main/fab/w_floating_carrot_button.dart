@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FloatingCarrotButton extends ConsumerWidget {
+  static const height = 100.0;
   FloatingCarrotButton({super.key});
   final duration = 300.ms;
 
@@ -57,7 +58,7 @@ class FloatingCarrotButton extends ConsumerWidget {
               ),
               Tap(
                 onTap: () {
-                  ref.read(floatingButtonStateProvider.notifier).onTapButton();
+                  ref.read(floatingButtonStateProvider.notifier).toggleMenu();
                 },
                 child: AnimatedContainer(
                   duration: duration,
@@ -84,12 +85,12 @@ class FloatingCarrotButton extends ConsumerWidget {
                       ),
                     ],
                   ),
-                ).pOnly(
-                    bottom: MainScreenState.bottomNavigationBarHeight +
-                        context.viewPaddingBottom +
-                        10,
-                    right: 20),
-              ),
+                ),
+              ).pOnly(
+                  bottom: MainScreenState.bottomNavigationBarHeight +
+                      context.viewPaddingBottom +
+                      10,
+                  right: 20),
             ],
           ),
         )

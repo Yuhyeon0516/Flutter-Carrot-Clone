@@ -12,6 +12,10 @@ extension IntExt on int {
     return decimalFormat.format(this);
   }
 
+  String toMon() {
+    return "${toComma()}원";
+  }
+
   String get withPlusMinus {
     if (this > 0) {
       return "+$this";
