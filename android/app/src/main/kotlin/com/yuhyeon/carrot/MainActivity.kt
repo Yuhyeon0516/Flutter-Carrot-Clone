@@ -1,4 +1,4 @@
-package com.example.fast_app_base
+package com.yuhyeon.carrot
 
 import io.flutter.embedding.android.FlutterActivity
 
