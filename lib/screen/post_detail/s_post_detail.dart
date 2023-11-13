@@ -23,7 +23,10 @@ class PostDetailScreen extends ConsumerWidget {
     final productPost = ref.watch(productPostProvider(id));
 
     return productPost.when(
-      data: (data) => _PostDetail(data.simpleProductPost),
+      data: (data) => _PostDetail(
+        data.simpleProductPost,
+        productPost: data,
+      ),
       error: (error, trace) => "에러발생".text.make(),
       loading: () => simpleProductPost != null
           ? _PostDetail(simpleProductPost!)
@@ -37,6 +40,7 @@ class PostDetailScreen extends ConsumerWidget {
 class _PostDetail extends HookWidget {
   final SimpleProductPost simpleProductPost;
   final ProductPost? productPost;
+  static const bottomMenuHeight = 100;
 
   const _PostDetail(this.simpleProductPost, {this.productPost, super.key});
 
@@ -47,7 +51,11 @@ class _PostDetail extends HookWidget {
       child: Stack(
         children: [
           SingleChildScrollView(
+            padding: EdgeInsets.only(
+              bottom: bottomMenuHeight.toDouble(),
+            ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _ImagePager(
                     pageController: pageController,
@@ -67,7 +75,7 @@ class _PostDetail extends HookWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 100,
+              height: bottomMenuHeight.toDouble(),
               color: Colors.blue,
             ),
           )
