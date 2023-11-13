@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class FloatingButtonState {
   bool isExpanded;
   bool isSmall;
+  bool isHided;
 
   FloatingButtonState()
       : isExpanded = false,
-        isSmall = false;
+        isSmall = false,
+        isHided = false;
 }
 
 final floatingButtonStateProvider =
@@ -50,6 +52,16 @@ class FloatingButtonStateNorifier extends StateNotifier<FloatingButtonState> {
     }
     state.isSmall = isSmall;
 
+    state = state;
+  }
+
+  void hideButton() {
+    state.isHided = true;
+    state = state;
+  }
+
+  void showButton() {
+    state.isHided = false;
     state = state;
   }
 }
