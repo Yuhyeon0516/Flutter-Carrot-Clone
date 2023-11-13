@@ -43,31 +43,36 @@ class _PostDetail extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageController = usePageController();
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              _ImagePager(
-                  pageController: pageController,
-                  simpleProductPost: simpleProductPost),
-              UserProfileWidget(simpleProductPost.product.user),
-              PostContentWidget(
-                simpleProductPost: simpleProductPost,
-                productPost: productPost,
-              )
-            ],
+    return Material(
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                _ImagePager(
+                    pageController: pageController,
+                    simpleProductPost: simpleProductPost),
+                UserProfileWidget(
+                  simpleProductPost.product.user,
+                  address: simpleProductPost.address,
+                ),
+                PostContentWidget(
+                  simpleProductPost: simpleProductPost,
+                  productPost: productPost,
+                )
+              ],
+            ),
           ),
-        ),
-        const _AppBar(),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: 100,
-            color: Colors.blue,
-          ),
-        )
-      ],
+          const _AppBar(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 100,
+              color: Colors.blue,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
