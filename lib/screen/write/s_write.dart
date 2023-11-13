@@ -9,6 +9,7 @@ import 'package:fast_app_base/entity/product_post/vo_simple_product_post.dart';
 import 'package:fast_app_base/entity/user/vo_address.dart';
 import 'package:fast_app_base/screen/main/tab/home/provider/post_provider.dart';
 import 'package:fast_app_base/screen/post_detail/s_post_detail.dart';
+import 'package:fast_app_base/screen/write/d_select_image_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +22,7 @@ class WriteScreen extends ConsumerStatefulWidget {
 
 class _WriteScreenState extends ConsumerState<WriteScreen>
     with KeyboardDetector {
-  final List<String> imageList = [picSum(442)];
+  final List<String> imageList = [];
   final titleController = TextEditingController();
   final priceController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -54,8 +55,8 @@ class _WriteScreenState extends ConsumerState<WriteScreen>
           title: "내 물건 팔기".text.bold.make(),
           actions: [
             Tap(
-              onTap: () {},
               child: "임시저장".text.make().p(15),
+              onTap: () {},
             ),
           ],
         ),
@@ -66,7 +67,9 @@ class _WriteScreenState extends ConsumerState<WriteScreen>
             children: [
               _ImageSelectWidget(
                 imageList,
-                onTap: () {},
+                onTap: () async {
+                  final selectedSource = await SelectImageSourceDialog().show();
+                },
               ),
               _TitleEditor(titleController),
               const Height(30),
@@ -141,34 +144,37 @@ class _ImageSelectWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            SizedBox(
-              height: 80,
-              width: 80,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.camera_alt),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: imageList.length.toString(),
-                          style: const TextStyle(color: Colors.orange),
-                        ),
-                        const TextSpan(text: "/10"),
-                      ],
+    return Tap(
+      onTap: onTap,
+      child: SizedBox(
+        height: 100,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              SizedBox(
+                height: 80,
+                width: 80,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.camera_alt),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: imageList.length.toString(),
+                            style: const TextStyle(color: Colors.orange),
+                          ),
+                          const TextSpan(text: "/10"),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ).box.rounded.border(color: Colors.grey).make(),
-            ),
-          ],
+                  ],
+                ).box.rounded.border(color: Colors.grey).make(),
+              ),
+            ],
+          ),
         ),
       ),
     );
