@@ -79,6 +79,8 @@ dependencies:
     hooks_riverpod: ^2.4.5
     smooth_page_indicator: ^1.1.0
     image_picker: ^1.0.4
+    firebase_messaging: ^14.7.4
+    firebase_core: ^2.22.0
 
 dev_dependencies:
     flutter_test:

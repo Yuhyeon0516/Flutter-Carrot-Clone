@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1019067974706",
+    "project_id": "flutter-example-d1137",
+    "storage_bucket": "flutter-example-d1137.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019067974706:android:87a6639bb94beee414282b",
+        "android_client_info": {
+          "package_name": "com.yuhyeon.carrot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKJbWPzgMW00zfjn_g-tS_pXPWzLiQi1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
