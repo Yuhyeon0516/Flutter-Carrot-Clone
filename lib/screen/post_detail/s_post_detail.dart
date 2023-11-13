@@ -2,6 +2,9 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/common/widget/w_round_button.dart';
+import 'package:fast_app_base/common/widget/w_vertical_line.dart';
+import 'package:fast_app_base/entity/product/vo_product.dart';
 import 'package:fast_app_base/entity/product_post/vo_product_post.dart';
 import 'package:fast_app_base/entity/product_post/vo_simple_product_post.dart';
 import 'package:fast_app_base/screen/post_detail/provider/product_post_provider.dart';
@@ -74,9 +77,60 @@ class _PostDetail extends HookWidget {
           const _AppBar(),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
-              height: bottomMenuHeight.toDouble(),
-              color: Colors.blue,
+            child: PostDetailBottomMenu(simpleProductPost.product),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class PostDetailBottomMenu extends StatelessWidget {
+  final Product product;
+
+  const PostDetailBottomMenu(this.product, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height:
+          _PostDetail.bottomMenuHeight.toDouble() + context.viewPaddingBottom,
+      child: Column(
+        children: [
+          const Line(),
+          Expanded(
+            child: Row(
+              children: [
+                const Width(10),
+                Image.asset(
+                  '$basePath/detail/heart_on.png',
+                  height: 25,
+                ),
+                const Width(30),
+                const VerticalLine().pSymmetric(v: 15),
+                const Width(30),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          product.price.toMon().text.bold.make(),
+                        ],
+                      ),
+                      "가격 제안하기".text.orange400.underline.make(),
+                    ],
+                  ),
+                ),
+                RoundButton(
+                  text: "채팅하기",
+                  onTap: () {},
+                  bgColor: Colors.orange,
+                  borderRadius: 7,
+                ),
+                const Width(20),
+              ],
             ),
           )
         ],
